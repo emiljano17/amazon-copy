@@ -2,7 +2,7 @@ import React from "react";
 
 import Subtotal from "./Subtotal";
 import { useStateValue } from "../StateProvider";
-import CurrencyFormat from "react-currency-format";
+import CheckoutProduct from "./CheckoutProduct";
 
 import "./Checkout.css";
 
@@ -22,35 +22,7 @@ function Checkout() {
         <div>
           <h2 className="checkout__title">Your shopping Basket</h2>
           {basket.map((item, idx) => {
-            return (
-              <div key={idx} className="checkout__singleItem">
-                <img src={item.image} alt={item.title} />
-                <div className="checkout__description">
-                  <p>{item.title}</p>
-                  <CurrencyFormat
-                    renderText={(value) => (
-                      <strong className="checkout__descriptionPrice">
-                        {`${value}`}
-                      </strong>
-                    )}
-                    decimalScale={2}
-                    value={item.price}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  />
-
-                  <div className="checkout__descriptionRating">
-                    {Array(item.rating)
-                      .fill()
-                      .map((_, i) => {
-                        return <p key={i}>⭐</p>;
-                      })}
-                  </div>
-                  <button>Remove from Basket</button>
-                </div>
-              </div>
-            );
+            return <CheckoutProduct item={item} key={idx} />;
           })}
         </div>
       </div>
