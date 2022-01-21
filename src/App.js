@@ -9,12 +9,12 @@ import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 
 import "./App.css";
+import Payment from "./components/Payment";
 
 function App() {
   const [{}, dispatch] = useStateValue();
 
   useEffect(() => {
-    //sth
     auth.onAuthStateChanged((authUser) => {
       console.log("the user is: ", authUser);
 
@@ -44,6 +44,10 @@ function App() {
           <Route path="/checkout">
             <Header />
             <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Payment />
           </Route>
           <Route path="/">
             <Header />

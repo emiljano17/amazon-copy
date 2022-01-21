@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useStateValue } from "../StateProvider";
 
@@ -6,6 +6,18 @@ import "./Product.css";
 
 function Product({ id, title, image, price, rating }) {
   const [{}, dispatch] = useStateValue();
+
+  const [mouseEnter, setMouseEnter] = useState(false);
+
+  const mouseEnterHandler = () => {
+    setMouseEnter(true);
+    console.log("yeyyyy", mouseEnter);
+  };
+
+  const mouseLeaveHandler = () => {
+    setMouseEnter(false);
+    console.log("left", mouseEnter);
+  };
 
   const addToBasket = () => {
     //dispatch sth
@@ -22,7 +34,11 @@ function Product({ id, title, image, price, rating }) {
   };
 
   return (
-    <div className="product">
+    <div
+      onMouseEnter={mouseEnterHandler}
+      onMouseLeave={mouseLeaveHandler}
+      className={mouseEnter ? "product productFlex" : "product"}
+    >
       <div className="product__info">
         <p>{title}</p>
         <p className="product__price">

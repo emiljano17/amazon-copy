@@ -1,10 +1,10 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "../StateProvider";
 
 import "./CheckoutProduct.css";
 
-function CheckoutProduct({ item, idx }) {
+const CheckoutProduct = forwardRef(({ item, idx }, ref) => {
   const [{}, dispatch] = useStateValue();
 
   const removeFromBasket = () => {
@@ -15,7 +15,7 @@ function CheckoutProduct({ item, idx }) {
   };
 
   return (
-    <div key={idx} className="checkout__singleItem">
+    <div ref={ref} key={idx} className="checkout__singleItem">
       <img src={item.image} alt={item.title} />
       <div className="checkout__description">
         <p>{item.title}</p>
@@ -41,6 +41,6 @@ function CheckoutProduct({ item, idx }) {
       </div>
     </div>
   );
-}
+});
 
 export default CheckoutProduct;
