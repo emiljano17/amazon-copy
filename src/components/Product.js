@@ -11,12 +11,10 @@ function Product({ id, title, image, price, rating }) {
 
   const mouseEnterHandler = () => {
     setMouseEnter(true);
-    console.log("yeyyyy", mouseEnter);
   };
 
   const mouseLeaveHandler = () => {
     setMouseEnter(false);
-    console.log("left", mouseEnter);
   };
 
   const addToBasket = () => {
